@@ -84,10 +84,10 @@
     box-shadow:0 -6px 20px -10px rgba(90,52,23,.25);
   }
   nav.tabs button{
-    flex:1; background:none; border:none; padding:6px 4px; font-size:10.5px; color:var(--muted);
-    display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer; font-weight:700; transition:color .15s;
+    flex:1; background:none; border:none; padding:6px 1px; font-size:9px; color:var(--muted);
+    display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; font-weight:700; transition:color .15s; white-space:nowrap;
   }
-  nav.tabs button .i{font-size:19px; width:46px; height:30px; display:flex; align-items:center; justify-content:center; border-radius:12px; transition:background .2s,transform .15s}
+  nav.tabs button .i{font-size:18px; width:38px; height:26px; display:flex; align-items:center; justify-content:center; border-radius:11px; transition:background .2s,transform .15s}
   nav.tabs button.active{color:var(--brown)}
   nav.tabs button.active .i{background:linear-gradient(135deg,#f4e6cb,#faf0da); transform:translateY(-1px)}
   /* icons */
@@ -123,6 +123,52 @@
   .bill .totbox .tr{display:flex; justify-content:space-between; padding:3px 0; font-size:13px}
   .bill .totbox .tr.grand{font-weight:800; font-size:16px; color:var(--brown); border-top:2px solid var(--brown); margin-top:4px; padding-top:6px}
   .bill .pay{margin-top:12px; padding:10px; background:var(--cream); border-radius:8px; font-size:12px}
+  .bill .paidline{display:inline-flex; align-items:center; gap:6px; margin-top:10px; padding:5px 12px; border:1.5px solid #1f8a4c; color:#1f8a4c; font-weight:800; font-size:13px; letter-spacing:.5px; border-radius:8px}
+  .bill .paidline .ic{width:15px; height:15px}
+  /* records */
+  .sumrow{display:flex; justify-content:space-between; align-items:center; padding:7px 0; font-size:15px; border-bottom:1px dashed var(--line)}
+  .sumrow:last-child{border-bottom:none}
+  .sumrow b{font-size:17px}
+  .rec{display:flex; align-items:center; gap:10px; padding:12px 0; border-bottom:1px solid var(--line)}
+  .rec:last-child{border-bottom:none}
+  .rec .recinfo{flex:1; min-width:0; cursor:pointer}
+  .rec .recno{font-weight:700; display:flex; align-items:center; gap:8px}
+  .rec .recsub{font-size:12px; color:var(--muted); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .rec .recright{display:flex; flex-direction:column; align-items:flex-end; gap:7px}
+  .rec .recamt{font-weight:800; color:var(--brown)}
+  .rec .recbtns{display:flex; gap:6px}
+  .badge{font-size:10px; font-weight:800; padding:2px 9px; border-radius:20px; text-transform:uppercase; letter-spacing:.4px}
+  .badge.paid{background:#e3f5ea; color:#1f8a4c}
+  .badge.due{background:#fbeeec; color:#c0392b}
+  .iconbtn.on{background:#e3f5ea; border-color:#bfe6cf; color:#1f8a4c}
+  .pend{display:flex; align-items:center; gap:10px; padding:11px 0; border-bottom:1px solid var(--line); cursor:pointer}
+  .pend:last-child{border-bottom:none}
+  .pend .pinfo{flex:1; min-width:0}
+  .pend .pn{font-weight:700}
+  .pend .ps{font-size:12px; color:var(--muted); margin-top:2px}
+  .pend .pamt{font-weight:800; color:var(--red)}
+  .fbar{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px}
+  .chipbtn{background:#fff; border:1.5px solid var(--line); color:var(--muted); border-radius:20px; padding:7px 15px; font-size:13px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:4px}
+  .chipbtn.on{background:var(--brown); color:#fff; border-color:var(--brown)}
+  .chipbtn.active{background:var(--cream); color:var(--brown); border-color:var(--gold)}
+  .chipbtn .ic{width:14px; height:14px}
+  /* auto-backup */
+  .switchrow{display:flex; align-items:center; gap:10px; font-weight:700; color:var(--ink); font-size:14.5px; margin:2px 0 0; cursor:pointer}
+  .switchrow input[type=checkbox]{width:22px; height:22px; padding:0; flex:0 0 auto; accent-color:var(--brown); border-radius:6px}
+  .autoitem{display:flex; align-items:center; gap:8px; padding:10px 0; border-bottom:1px solid var(--line)}
+  .autoitem:last-child{border-bottom:none}
+  .autoitem .at{flex:1; font-size:13px; font-weight:600}
+  /* customers */
+  .cust{border-bottom:1px solid var(--line)}
+  .cust:last-child{border-bottom:none}
+  .cust .custhead{display:flex; align-items:center; gap:8px; padding:10px 0}
+  .cust .chevbtn{background:none; border:none; padding:4px; cursor:pointer; color:var(--muted); display:flex; flex:0 0 auto}
+  .cust .chevbtn .ic{width:18px; height:18px; transition:transform .2s}
+  .cust.open .chevbtn .ic{transform:rotate(180deg)}
+  .cust .custname{flex:1; font-weight:700; cursor:pointer; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .cust .custdetail{display:none; padding:2px 0 14px}
+  .cust.open .custdetail{display:block}
+  .cust .custbtns{display:flex; gap:8px; margin-top:12px}
   .bill .foot{text-align:center; margin-top:14px; font-size:12px; color:#555}
   /* catalog editor */
   .catblock{border:1px solid var(--line); border-radius:16px; margin-bottom:14px; overflow:hidden; background:#fff; box-shadow:var(--shadow-sm)}
@@ -177,6 +223,8 @@
 <section id="tab-bill" class="wrap">
   <div class="card">
     <h2>Customer</h2>
+    <label>Pick saved customer</label>
+    <select id="custPick" onchange="pickCustomer(this.value)"></select>
     <label>Name</label>
     <input id="cName" placeholder="Customer name">
     <div class="row">
@@ -184,6 +232,7 @@
     </div>
     <label>Address</label>
     <textarea id="cAddr" placeholder="Customer address (optional)"></textarea>
+    <button class="btn ghost sm" style="width:auto;margin-top:10px" data-ic="userplus" onclick="saveCurrentCustomer()">Save to Customers</button>
   </div>
 
   <div class="card">
@@ -281,8 +330,15 @@
     <p id="noSaved" class="muted" style="text-align:center;margin-top:8px"></p>
   </div>
   <div class="card">
-    <h2>Backup</h2>
-    <p class="muted">All data is stored on this phone only. Export to keep a copy.</p>
+    <h2>Auto-Backup</h2>
+    <label class="switchrow"><input type="checkbox" id="autoChk" onchange="toggleAuto(this.checked)"> Auto-backup every 6 hours</label>
+    <p class="muted">While the app is open, it saves a snapshot on this phone every 6 hours (keeps the last 4) — a safety net against accidental changes. It can't run while the app is closed, so also export a Full Backup off-device now and then.</p>
+    <p id="autoStatus" class="muted"></p>
+    <div id="autoList"></div>
+  </div>
+  <div class="card">
+    <h2>Full Backup (Everything)</h2>
+    <p class="muted">Saves <b>everything</b> into one file — products, categories, photos, logo, shop settings, invoice number, <b>customers</b> and all <b>bill records</b>. Import to restore on this or another phone. All data lives only on this phone, so back up regularly.</p>
     <div class="grid2" style="margin-top:10px">
       <button class="btn ghost sm" style="width:auto" data-ic="download" onclick="exportData()">Export</button>
       <button class="btn ghost sm" style="width:auto" data-ic="upload" onclick="document.getElementById('impFile').click()">Import</button>
@@ -315,10 +371,45 @@
   <div id="catTree"></div>
 </section>
 
+<!-- ============ CUSTOMERS ============ -->
+<section id="tab-customers" class="wrap hidden">
+  <div class="card">
+    <h2>Customer List</h2>
+    <input id="custSearch" placeholder="Search by name or phone" oninput="renderCustomers()" style="margin-bottom:12px">
+    <div id="custList"></div>
+  </div>
+  <div class="card">
+    <h2>Add Customer</h2>
+    <label>Name</label>
+    <input id="custName" placeholder="Customer name">
+    <label>Phone</label>
+    <input id="custPhone" type="tel" placeholder="Phone number" inputmode="numeric">
+    <label>Address</label>
+    <textarea id="custAddr" placeholder="Address (optional)"></textarea>
+    <button class="btn" style="margin-top:12px" data-ic="userplus" onclick="addCustomer()">Add Customer</button>
+    <p class="muted" style="margin-top:8px">Tip: you can also save a customer straight from the bill screen with “Save to Customers”.</p>
+  </div>
+</section>
+
+<!-- ============ RECORDS ============ -->
+<section id="tab-records" class="wrap hidden">
+  <div class="card" id="recSummary"></div>
+  <div class="card">
+    <h2>Pending Payments</h2>
+    <div id="recPending"></div>
+  </div>
+  <div class="card">
+    <h2>Bill Records</h2>
+    <div id="recFilterBar"></div>
+    <div id="recList"></div>
+  </div>
+</section>
+
 <!-- ============ BILL VIEW (overlay) ============ -->
 <section id="billView" class="hidden" style="position:fixed; inset:0; z-index:40; overflow:auto">
   <div class="modalbar no-print">
     <button class="btn ghost sm" style="flex:0 0 auto" data-ic="back" onclick="closeBill()">Back</button>
+    <button class="btn ghost sm" id="paidBtn" style="flex:0 0 auto" onclick="togglePaidCurrent()">Mark Paid</button>
     <button class="btn green sm" style="flex:1" data-ic="chat" onclick="shareWhatsApp()">WhatsApp</button>
     <button class="btn gold sm" style="flex:1" data-ic="printer" onclick="window.print()">PDF / Print</button>
   </div>
@@ -336,9 +427,11 @@
 
 <!-- ============ NAV ============ -->
 <nav class="tabs">
-  <button data-tab="bill" class="active" onclick="showTab('bill')"><span class="i" data-ic="bill"></span>New Bill</button>
+  <button data-tab="bill" class="active" onclick="showTab('bill')"><span class="i" data-ic="bill"></span>Bill</button>
   <button data-tab="products" onclick="showTab('products')"><span class="i" data-ic="box"></span>Products</button>
   <button data-tab="catalog" onclick="showTab('catalog')"><span class="i" data-ic="book"></span>Catalog</button>
+  <button data-tab="customers" onclick="showTab('customers')"><span class="i" data-ic="customers"></span>Customers</button>
+  <button data-tab="records" onclick="showTab('records')"><span class="i" data-ic="records"></span>Records</button>
   <button data-tab="settings" onclick="showTab('settings')"><span class="i" data-ic="settings"></span>Settings</button>
 </nav>
 
@@ -369,6 +462,12 @@ if(!products){ products = DEFAULT_PRODUCTS.slice(); LS.set('df_products', produc
 let settings = LS.get('df_settings', {name:"", addr:"", phone:"", upi:"", payNote:"", foot:"Thank you for your business!"});
 let cart = [];
 let billCounter = LS.get('df_counter', 0);
+let bills = LS.get('df_bills', []);
+let customers = LS.get('df_customers', []);
+let recFilter = {status:'all', cust:null, custName:''};
+let autoBackups = LS.get('df_autobackups', []);
+let autoEnabled = LS.get('df_autoOn', true);
+const AUTO_INT = 6*60*60*1000, AUTO_KEEP = 4;
 let catOrder = LS.get('df_catorder', []);
 let subOrder = LS.get('df_suborder', {});
 let _idc = LS.get('df_idc', 0);
@@ -398,7 +497,11 @@ const ICONS={
   phone:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
   chat:'<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
   back:'<polyline points="15 18 9 12 15 6"/>',
-  check:'<polyline points="20 6 9 17 4 12"/>'
+  check:'<polyline points="20 6 9 17 4 12"/>',
+  records:'<line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>',
+  paidcircle:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>',
+  customers:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  userplus:'<path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/>'
 };
 function ic(n,cls){
   if(n==='brand') return '<svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c3.6 3 5.6 6.6 5.6 10.6C17.6 17.6 15 21 12 22 9 21 6.4 17.6 6.4 12.6 6.4 8.6 8.4 5 12 2z"/></svg>';
@@ -408,9 +511,11 @@ function applyIcons(){ document.querySelectorAll('[data-ic]').forEach(el=>{ if(!
 
 /* ---------- tabs ---------- */
 function showTab(t){
-  ['bill','products','catalog','settings'].forEach(x=>{
+  ['bill','products','catalog','customers','records','settings'].forEach(x=>{
     document.getElementById('tab-'+x).classList.toggle('hidden', x!==t);
   });
+  if(t==='records') renderRecords();
+  if(t==='customers') renderCustomers();
   document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.toggle('active', b.dataset.tab===t));
   if(t==='settings'){ const n=document.getElementById('sNextNo'); if(n) n.value=billCounter+1; }
   window.scrollTo(0,0);
@@ -506,6 +611,7 @@ function clearBill(){
   if(!cart.length && !document.getElementById('cName').value){ return; }
   if(confirm('Clear this bill?')){
     cart=[]; ['cName','cPhone','cAddr'].forEach(id=>document.getElementById(id).value='');
+    const cp=document.getElementById('custPick'); if(cp) cp.value='';
     document.getElementById('discVal').value='0'; renderCart();
   }
 }
@@ -568,6 +674,73 @@ function pickLogo(e){
 }
 function removeLogo(){ delete settings.logo; LS.set('df_settings',settings); renderLogoPreview(); }
 
+/* ---------- customers ---------- */
+function refreshCustPick(){
+  const sel=document.getElementById('custPick'); if(!sel) return;
+  const cur=sel.value;
+  sel.innerHTML='<option value="">— none —</option>'+customers.slice().sort((a,b)=>a.name.localeCompare(b.name))
+    .map(c=>`<option value="${c.id}">${esc(c.name)}${c.phone?' · '+esc(c.phone):''}</option>`).join('');
+  sel.value=cur;
+}
+function pickCustomer(id){
+  if(!id) return;
+  const c=customers.find(x=>x.id===id); if(!c) return;
+  document.getElementById('cName').value=c.name||'';
+  document.getElementById('cPhone').value=c.phone||'';
+  document.getElementById('cAddr').value=c.addr||'';
+}
+function saveCurrentCustomer(){
+  const name=document.getElementById('cName').value.trim();
+  if(!name){ alert('Enter a customer name first.'); return; }
+  const phone=document.getElementById('cPhone').value.trim();
+  const addr=document.getElementById('cAddr').value.trim();
+  const ex=customers.find(c=>c.name.toLowerCase()===name.toLowerCase() && c.phone===phone);
+  if(ex){ ex.addr=addr; if(phone) ex.phone=phone; }
+  else customers.push({id:'c'+Date.now(), name, phone, addr});
+  LS.set('df_customers',customers); renderCustomers(); refreshCustPick();
+  alert('Saved to Customers.');
+}
+function addCustomer(){
+  const name=document.getElementById('custName').value.trim();
+  if(!name){ alert('Enter a customer name.'); return; }
+  customers.push({id:'c'+Date.now(), name, phone:document.getElementById('custPhone').value.trim(), addr:document.getElementById('custAddr').value.trim()});
+  LS.set('df_customers',customers);
+  document.getElementById('custName').value=''; document.getElementById('custPhone').value=''; document.getElementById('custAddr').value='';
+  renderCustomers(); refreshCustPick();
+}
+function editCust(id,f,v){ const c=customers.find(x=>x.id===id); if(!c) return; c[f]=v; LS.set('df_customers',customers); refreshCustPick(); if(f==='name'){ const h=document.querySelector('#cust-'+id+' .custname'); if(h) h.textContent=v; } }
+function toggleCust(id){ const el=document.getElementById('cust-'+id); if(el) el.classList.toggle('open'); }
+function delCust(id){ const c=customers.find(x=>x.id===id); if(!c) return; if(!confirm('Delete customer "'+c.name+'"?')) return; customers=customers.filter(x=>x.id!==id); LS.set('df_customers',customers); renderCustomers(); refreshCustPick(); }
+function useCustomer(id){ pickCustomer(id); const s=document.getElementById('custPick'); if(s) s.value=id; showTab('bill'); }
+function renderCustomers(){
+  const list=document.getElementById('custList'); if(!list) return;
+  const q=(document.getElementById('custSearch')?document.getElementById('custSearch').value:'').trim().toLowerCase();
+  let arr=customers.slice().sort((a,b)=>a.name.localeCompare(b.name));
+  if(q) arr=arr.filter(c=>(c.name||'').toLowerCase().includes(q)||(c.phone||'').includes(q));
+  if(!customers.length){ list.innerHTML='<div class="empty">No customers yet. Add one above.</div>'; return; }
+  if(!arr.length){ list.innerHTML='<div class="empty">No matches.</div>'; return; }
+  list.innerHTML=arr.map(c=>`
+    <div class="cust" id="cust-${c.id}">
+      <div class="custhead">
+        <button class="chevbtn" onclick="toggleCust('${c.id}')">${ic('down')}</button>
+        <div class="custname" onclick="toggleCust('${c.id}')">${esc(c.name)}</div>
+        <button class="btn gold sm" style="width:auto" data-ic="bill" onclick="useCustomer('${c.id}')">Use in Bill</button>
+      </div>
+      <div class="custdetail">
+        <label>Name</label>
+        <input value="${esc(c.name)}" onchange="editCust('${c.id}','name',this.value)" placeholder="Name">
+        <label>Phone</label>
+        <input value="${esc(c.phone||'')}" type="tel" inputmode="numeric" onchange="editCust('${c.id}','phone',this.value)" placeholder="Phone">
+        <label>Address</label>
+        <textarea onchange="editCust('${c.id}','addr',this.value)" placeholder="Address" style="min-height:44px">${esc(c.addr||'')}</textarea>
+        <div class="custbtns">
+          <button class="btn danger sm" style="width:auto" data-ic="trash" onclick="delCust('${c.id}')">Delete</button>
+        </div>
+      </div>
+    </div>`).join('');
+  applyIcons();
+}
+
 /* ---------- bill generation ---------- */
 let lastBill=null;
 function openBill(){
@@ -581,15 +754,104 @@ function openBill(){
     phone:document.getElementById('cPhone').value.trim(),
     addr:document.getElementById('cAddr').value.trim(),
   };
-  lastBill={no, date:now, cust, items:cart.slice(), t};
+  const rec={id:'b'+Date.now(), no, date:now.toISOString(), cust, items:cart.slice(), t, paid:false};
+  bills.push(rec); LS.set('df_bills',bills);
+  lastBill=rec;
   document.getElementById('billContent').innerHTML=billHTML(lastBill);
   document.getElementById('billView').classList.remove('hidden');
+  updatePaidBtn(); renderRecords();
   window.scrollTo(0,0);
 }
 function closeBill(){ document.getElementById('billView').classList.add('hidden'); }
+function updatePaidBtn(){
+  const btn=document.getElementById('paidBtn'); if(!btn||!lastBill) return;
+  if(lastBill.paid){ btn.innerHTML=ic('paidcircle')+' Paid'; btn.classList.add('green'); btn.classList.remove('ghost'); }
+  else { btn.innerHTML=ic('check')+' Mark Paid'; btn.classList.add('ghost'); btn.classList.remove('green'); }
+}
+function togglePaidCurrent(){ if(lastBill) togglePaid(lastBill.id); }
+function togglePaid(id){
+  const r=bills.find(x=>x.id===id); if(!r) return;
+  r.paid=!r.paid; LS.set('df_bills',bills);
+  renderRecords();
+  if(lastBill && lastBill.id===id && !document.getElementById('billView').classList.contains('hidden')){
+    document.getElementById('billContent').innerHTML=billHTML(lastBill);
+    updatePaidBtn();
+  }
+}
+function viewRecord(id){
+  const r=bills.find(x=>x.id===id); if(!r) return;
+  lastBill=r;
+  document.getElementById('billContent').innerHTML=billHTML(r);
+  document.getElementById('billView').classList.remove('hidden');
+  updatePaidBtn();
+  window.scrollTo(0,0);
+}
+function delRecord(id){
+  const r=bills.find(x=>x.id===id); if(!r) return;
+  if(!confirm('Delete bill #'+r.no+'? This only removes the saved record.')) return;
+  bills=bills.filter(x=>x.id!==id); LS.set('df_bills',bills); renderRecords();
+}
+function custKeyOf(b){ return (b.cust.name||'—').trim().toLowerCase()+'|'+(b.cust.phone||'').trim(); }
+function setRecStatus(s){ recFilter.status=s; renderRecords(); }
+function filterByCust(key,name){ recFilter.cust=key; recFilter.custName=name; recFilter.status='all'; renderRecords(); document.getElementById('recFilterBar').scrollIntoView({behavior:'smooth',block:'start'}); }
+function clearCustFilter(){ recFilter.cust=null; recFilter.custName=''; renderRecords(); }
+function renderRecords(){
+  const list=document.getElementById('recList'); if(!list) return;
+  const paidSum=bills.filter(b=>b.paid).reduce((s,b)=>s+b.t.grand,0);
+  const dueSum=bills.filter(b=>!b.paid).reduce((s,b)=>s+b.t.grand,0);
+  // pending grouped by customer
+  const map={};
+  bills.filter(b=>!b.paid).forEach(b=>{ const k=custKeyOf(b);
+    if(!map[k]) map[k]={name:(b.cust.name||'—').trim(), phone:(b.cust.phone||'').trim(), count:0, total:0, key:k};
+    map[k].count++; map[k].total+=b.t.grand; });
+  const parr=Object.values(map).sort((a,b)=>b.total-a.total);
+  const sum=document.getElementById('recSummary');
+  if(sum) sum.innerHTML=`
+    <div class="sumrow"><span>Collected</span><b style="color:var(--green)">${rs(paidSum)}</b></div>
+    <div class="sumrow"><span>Pending</span><b style="color:var(--red)">${rs(dueSum)}${parr.length?` <span style="font-weight:600;font-size:12px;color:var(--muted)">(${parr.length} customer${parr.length>1?'s':''})</span>`:''}</b></div>
+    <div class="sumrow"><span>Total bills</span><b>${bills.length}</b></div>`;
+  const pend=document.getElementById('recPending');
+  if(pend) pend.innerHTML = parr.length ? parr.map(c=>`
+    <div class="pend" onclick="filterByCust('${js(c.key)}','${js(c.name)}')">
+      <div class="pinfo"><div class="pn">${esc(c.name)}</div><div class="ps">${c.phone?esc(c.phone)+' · ':''}${c.count} pending bill${c.count>1?'s':''}</div></div>
+      <div class="pamt">${rs(c.total)}</div>
+    </div>`).join('') : '<div class="empty">No pending payments. All bills are settled.</div>';
+  const fb=document.getElementById('recFilterBar');
+  if(fb) fb.innerHTML=`<div class="fbar">
+      <button class="chipbtn ${recFilter.status==='all'&&!recFilter.cust?'on':''}" onclick="setRecStatus('all')">All</button>
+      <button class="chipbtn ${recFilter.status==='due'?'on':''}" onclick="setRecStatus('due')">Due</button>
+      <button class="chipbtn ${recFilter.status==='paid'?'on':''}" onclick="setRecStatus('paid')">Paid</button>
+      ${recFilter.cust?`<button class="chipbtn active" onclick="clearCustFilter()">${esc(recFilter.custName)} ${ic('x')}</button>`:''}
+    </div>`;
+  if(!bills.length){ list.innerHTML='<div class="empty">No bills yet. Generate a bill to see it here.</div>'; return; }
+  let arr=bills.slice().reverse();
+  if(recFilter.status==='due') arr=arr.filter(b=>!b.paid);
+  else if(recFilter.status==='paid') arr=arr.filter(b=>b.paid);
+  if(recFilter.cust) arr=arr.filter(b=>custKeyOf(b)===recFilter.cust);
+  if(!arr.length){ list.innerHTML='<div class="empty">No bills match this filter.</div>'; return; }
+  list.innerHTML=arr.map(r=>{
+    const d=new Date(r.date).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'2-digit'});
+    const badge=r.paid?'<span class="badge paid">Paid</span>':'<span class="badge due">Due</span>';
+    const who=[esc(r.cust.name||'—'), r.cust.phone?esc(r.cust.phone):''].filter(Boolean).join(' · ');
+    return `<div class="rec">
+      <div class="recinfo" onclick="viewRecord('${r.id}')">
+        <div class="recno">#${r.no} ${badge}</div>
+        <div class="recsub">${d} · ${who}</div>
+      </div>
+      <div class="recright">
+        <div class="recamt">${rs(r.t.grand)}</div>
+        <div class="recbtns">
+          <button class="iconbtn ${r.paid?'on':''}" title="Mark paid/unpaid" onclick="togglePaid('${r.id}')">${r.paid?ic('paidcircle'):ic('check')}</button>
+          <button class="iconbtn" onclick="delRecord('${r.id}')">${ic('trash')}</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
 function billHTML(b){
-  const dt=b.date.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
-  const tm=b.date.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+  const dObj=(b.date instanceof Date)?b.date:new Date(b.date);
+  const dt=dObj.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+  const tm=dObj.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
   const rows=b.items.map(c=>{
     const rate = (c.orig && c.orig>c.price)
       ? `<s style="color:#999">${Number(c.orig).toFixed(2)}</s> ${Number(c.price).toFixed(2)}`
@@ -629,6 +891,7 @@ function billHTML(b){
       <div class="tr grand"><span>Total</span><span>₹${b.t.grand.toFixed(2)}</span></div>
     </div>
     ${saved>0?`<div style="text-align:right;color:var(--green);font-weight:700;font-size:12px;margin-top:4px">You saved ₹${saved.toFixed(2)} on offers</div>`:''}
+    ${b.paid?`<div class="paidline">${ic('paidcircle')} PAYMENT RECEIVED</div>`:''}
     ${payBlock}
     <div class="foot">${esc(settings.foot||'Thank you!')}</div>
   </div>`;
@@ -636,7 +899,7 @@ function billHTML(b){
 
 /* ---------- whatsapp ---------- */
 function waText(b){
-  const dt=b.date.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+  const dt=new Date(b.date).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
   let m=`*${settings.name||'Dry Fruit Shop'}*\n`;
   if(settings.addr) m+=settings.addr.replace(/\n/g,', ')+'\n';
   if(settings.phone) m+='Ph: '+settings.phone+'\n';
@@ -676,12 +939,13 @@ async function shareWhatsApp(){
       if(blob){
         const file=new File([blob],'bill-'+b.no+'.png',{type:'image/png'});
         if(navigator.canShare && navigator.canShare({files:[file]})){
-          await navigator.share({files:[file], text:waText(b)});
+          await navigator.share({files:[file]});
           return;
         }
-        // no file-share support: download the image, then open WhatsApp chat to attach it
+        // no file-share support: download the image, then open the WhatsApp chat to attach it
         const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=file.name; a.click();
-        window.open(waTextURL(b),'_blank');
+        const ph=b.cust.phone.replace(/\D/g,'');
+        window.open('https://wa.me/'+(ph.length>=10?'91'+ph.slice(-10):''),'_blank');
         return;
       }
     }
@@ -695,26 +959,91 @@ async function shareWhatsApp(){
 }
 
 /* ---------- backup ---------- */
+function backupPayload(){
+  return { type:'billing-full-backup', version:2, exportedAt:new Date().toISOString(),
+    products, settings, counter:billCounter, catOrder, subOrder, idc:_idc, bills, customers };
+}
+function applyBackup(d){
+  if(Array.isArray(d.products)){products=d.products; products.forEach(p=>{ if(!p.id) p.id=nextId(); }); LS.set('df_products',products);}
+  if(d.settings){settings=d.settings; LS.set('df_settings',settings);}
+  if(d.counter!=null){billCounter=d.counter; LS.set('df_counter',billCounter);}
+  if(Array.isArray(d.bills)){bills=d.bills; LS.set('df_bills',bills);}
+  if(Array.isArray(d.customers)){customers=d.customers; LS.set('df_customers',customers);}
+  if(d.catOrder){catOrder=d.catOrder; LS.set('df_catorder',catOrder);}
+  if(d.subOrder){subOrder=d.subOrder; LS.set('df_suborder',subOrder);}
+  if(d.idc!=null){_idc=d.idc; LS.set('df_idc',_idc);}
+  loadSettings(); renderAll();
+}
 function exportData(){
-  const data={products, settings, counter:billCounter, catOrder, subOrder, idc:_idc};
-  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const blob=new Blob([JSON.stringify(backupPayload())],{type:'application/json'});
   const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob); a.download='dryfruit-backup.json'; a.click();
+  const stamp=new Date().toISOString().slice(0,10);
+  a.href=URL.createObjectURL(blob); a.download='billing-backup-'+stamp+'.json'; a.click();
+}
+
+/* ---------- auto-backup (every 6 hours, on-device) ---------- */
+function fmtTs(ts){ return new Date(ts).toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}); }
+function saveAutoBackup(){
+  if(!autoEnabled) return;
+  autoBackups.push({ts:Date.now(), json:JSON.stringify(backupPayload())});
+  while(autoBackups.length>AUTO_KEEP) autoBackups.shift();
+  let tries=0;
+  while(autoBackups.length){
+    try{ LS.set('df_autobackups',autoBackups); break; }
+    catch(e){ autoBackups.shift(); if(++tries>6) break; }   // storage full: drop oldest and retry
+  }
+  LS.set('df_autolast',Date.now());
+  renderAutoBackups();
+}
+function checkAutoBackup(){
+  if(!autoEnabled) return;
+  if(Date.now()-LS.get('df_autolast',0) >= AUTO_INT) saveAutoBackup();
+}
+function toggleAuto(on){ autoEnabled=on; LS.set('df_autoOn',autoEnabled); if(on) checkAutoBackup(); renderAutoBackups(); }
+function restoreAuto(ts){
+  const s=autoBackups.find(b=>b.ts===ts); if(!s) return;
+  if(!confirm('Restore the auto-backup from '+fmtTs(ts)+'?\nThis replaces your current data.')) return;
+  try{ applyBackup(JSON.parse(s.json)); alert('Restored backup from '+fmtTs(ts)+'.'); }
+  catch(e){ alert('Could not restore this backup.'); }
+}
+function downloadAuto(ts){
+  const s=autoBackups.find(b=>b.ts===ts); if(!s) return;
+  const blob=new Blob([s.json],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='billing-backup-'+new Date(ts).toISOString().slice(0,10)+'.json'; a.click();
+}
+function renderAutoBackups(){
+  const chk=document.getElementById('autoChk'); if(chk) chk.checked=autoEnabled;
+  const st=document.getElementById('autoStatus');
+  if(st){
+    const last=LS.get('df_autolast',0);
+    st.textContent = !autoEnabled ? 'Auto-backup is off.'
+      : (last? 'Last auto-backup: '+fmtTs(last) : 'No auto-backup yet — the first one saves shortly.');
+  }
+  const list=document.getElementById('autoList'); if(!list) return;
+  if(!autoBackups.length){ list.innerHTML=''; return; }
+  list.innerHTML=autoBackups.slice().reverse().map(b=>`
+    <div class="autoitem">
+      <span class="at">${fmtTs(b.ts)}</span>
+      <button class="btn ghost sm" style="width:auto" onclick="restoreAuto(${b.ts})">Restore</button>
+      <button class="iconbtn" title="Download" onclick="downloadAuto(${b.ts})">${ic('download')}</button>
+    </div>`).join('');
 }
 function importData(e){
   const f=e.target.files[0]; if(!f) return;
   const r=new FileReader();
   r.onload=()=>{ try{
     const d=JSON.parse(r.result);
-    if(d.products){products=d.products; products.forEach(p=>{ if(!p.id) p.id=nextId(); }); LS.set('df_products',products);}
-    if(d.settings){settings=d.settings; LS.set('df_settings',settings);}
-    if(d.counter!=null){billCounter=d.counter; LS.set('df_counter',billCounter);}
-    if(d.catOrder){catOrder=d.catOrder; LS.set('df_catorder',catOrder);}
-    if(d.subOrder){subOrder=d.subOrder; LS.set('df_suborder',subOrder);}
-    if(d.idc!=null){_idc=d.idc; LS.set('df_idc',_idc);}
-    loadSettings(); renderAll(); alert('Data imported.');
+    const nP=Array.isArray(d.products)?d.products.length:0;
+    const nB=Array.isArray(d.bills)?d.bills.length:0;
+    const nC=Array.isArray(d.customers)?d.customers.length:0;
+    if(!nP && !nB && !nC && !d.settings){ alert('This does not look like a billing backup file.'); return; }
+    if(!confirm('Restore this backup? It will replace your current data:\n\n• '+nP+' products\n• '+nC+' customers\n• '+nB+' bills\n(plus shop settings, categories & logo)')) return;
+    applyBackup(d);
+    alert('Restored: '+nP+' products, '+nC+' customers, '+nB+' bills.');
   }catch(err){ alert('Invalid file.'); } };
   r.readAsText(f);
+  e.target.value='';
 }
 
 /* ---------- catalog: structure helpers ---------- */
@@ -924,8 +1253,10 @@ function importCatalog(e){
 
 /* ---------- util ---------- */
 function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function renderAll(){ renderPicker(); renderAdmin(); renderCart(); renderCatalog(); refreshCatList(); }
+function renderAll(){ renderPicker(); renderAdmin(); renderCart(); renderCatalog(); refreshCatList(); renderRecords(); renderCustomers(); refreshCustPick(); renderAutoBackups(); }
 loadSettings(); renderAll(); applyIcons();
+checkAutoBackup();
+setInterval(checkAutoBackup, 15*60*1000);
 
 /* ---------- installable app (adds name + icon so "Install / Add to Home screen" works when hosted) ---------- */
 (function(){
