@@ -113,7 +113,7 @@
   .bill .bhead .blogo{max-height:70px; max-width:180px; object-fit:contain; margin-bottom:6px}
   .bill .bhead .bname{font-family:"Fraunces",Georgia,serif; font-size:22px; font-weight:700; color:var(--brown)}
   .logoPrev{max-height:70px; max-width:160px; object-fit:contain; border:1px solid var(--line); border-radius:8px; padding:4px; background:#fff; margin-top:8px}
-  .bill .bhead .baddr{font-size:12px; color:#444; margin-top:2px; white-space:pre-line}
+  .bill .bhead .baddr{font-size:12px; color:#444; margin-top:2px; white-space:pre-line; text-align:left}
   .bill .meta{display:flex; justify-content:space-between; font-size:12px; margin-bottom:8px; gap:10px}
   .bill table{width:100%; border-collapse:collapse; margin:8px 0}
   .bill th,.bill td{border:1px solid #ccc; padding:6px; font-size:12px}
@@ -160,10 +160,12 @@
   @media print{ .catgrid{grid-template-columns:repeat(3,1fr)} .pcard{break-inside:avoid} .catdoc h3.catname{break-after:avoid} }
   .modalbar{display:flex; gap:8px; padding:12px 14px; position:sticky; top:0; background:var(--cream); border-bottom:1px solid var(--line); z-index:5}
   @media print{
-    header.app,nav.tabs,.modalbar,.no-print{display:none !important}
-    body{background:#fff; padding:0}
-    #billView{position:static !important}
-    .wrap{padding:0}
+    *{-webkit-print-color-adjust:exact !important; print-color-adjust:exact !important}
+    body{background:#fff !important; padding:0 !important}
+    body>*{display:none !important}
+    #billView:not(.hidden),#catView:not(.hidden){display:block !important; position:static !important; overflow:visible !important; background:#fff !important}
+    .modalbar,.no-print{display:none !important}
+    #billContent,#catContent{margin:0}
   }
 </style>
 </head>
@@ -602,7 +604,7 @@ function billHTML(b){
   const custBlock = (b.cust.name||b.cust.phone||b.cust.addr) ? `
     <div><b>Bill To:</b><br>${esc(b.cust.name||'')}${b.cust.phone?'<br>'+ic('phone')+' '+esc(b.cust.phone):''}${b.cust.addr?'<br>'+esc(b.cust.addr).replace(/\n/g,'<br>'):''}</div>` : '<div></div>';
   const payBlock = (settings.upi||settings.payNote) ? `
-    <div class="pay"><b>Payment</b><br>${settings.payNote?esc(settings.payNote)+'<br>':''}${settings.upi?'UPI: <b>'+esc(settings.upi)+'</b>':''}</div>`:'';
+    <div class="pay"><b>Payment</b><br><b>${settings.payNote?esc(settings.payNote)+'<br>':''}${settings.upi?'UPI: '+esc(settings.upi):''}</b></div>`:'';
   const addrLines=(settings.addr||'').split('\n').map(l=>l.trim()).filter(Boolean).map(esc).join('<br>');
   const logo = settings.logo ? `<img src="${settings.logo}" class="blogo" alt="logo">` : '';
   return `<div class="bill">
@@ -633,11 +635,10 @@ function billHTML(b){
 }
 
 /* ---------- whatsapp ---------- */
-function shareWhatsApp(){
-  const b=lastBill; if(!b) return;
+function waText(b){
   const dt=b.date.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
   let m=`*${settings.name||'Dry Fruit Shop'}*\n`;
-  if(settings.addr) m+=settings.addr+'\n';
+  if(settings.addr) m+=settings.addr.replace(/\n/g,', ')+'\n';
   if(settings.phone) m+='Ph: '+settings.phone+'\n';
   m+=`\nInvoice #${b.no} | ${dt}\n`;
   if(b.cust.name) m+=`Customer: ${b.cust.name}\n`;
@@ -648,9 +649,49 @@ function shareWhatsApp(){
   m+=`*Total: ₹${b.t.grand.toFixed(2)}*\n`;
   if(settings.upi) m+=`\nPay via UPI: ${settings.upi}\n`;
   if(settings.foot) m+=`\n${settings.foot}`;
+  return m;
+}
+function waTextURL(b){
   const phone=b.cust.phone.replace(/\D/g,'');
-  const url='https://wa.me/'+(phone.length>=10?'91'+phone.slice(-10):'')+'?text='+encodeURIComponent(m);
-  window.open(url,'_blank');
+  return 'https://wa.me/'+(phone.length>=10?'91'+phone.slice(-10):'')+'?text='+encodeURIComponent(waText(b));
+}
+function loadScript(src){
+  return new Promise((res,rej)=>{
+    if(document.querySelector('script[data-s="'+src+'"]')) return res();
+    const s=document.createElement('script'); s.src=src; s.dataset.s=src;
+    s.onload=()=>res(); s.onerror=()=>rej(new Error('load fail'));
+    document.head.appendChild(s);
+  });
+}
+async function shareWhatsApp(){
+  const b=lastBill; if(!b) return;
+  const el=document.querySelector('#billContent .bill');
+  const btn=document.querySelector('#billView .modalbar .green');
+  const old = btn?btn.innerHTML:''; if(btn){ btn.innerHTML='…'; btn.disabled=true; }
+  try{
+    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    if(window.html2canvas && el){
+      const canvas=await html2canvas(el,{scale:2, backgroundColor:'#ffffff', useCORS:true, logging:false});
+      const blob=await new Promise(r=>canvas.toBlob(r,'image/png'));
+      if(blob){
+        const file=new File([blob],'bill-'+b.no+'.png',{type:'image/png'});
+        if(navigator.canShare && navigator.canShare({files:[file]})){
+          await navigator.share({files:[file], text:waText(b)});
+          return;
+        }
+        // no file-share support: download the image, then open WhatsApp chat to attach it
+        const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=file.name; a.click();
+        window.open(waTextURL(b),'_blank');
+        return;
+      }
+    }
+    window.open(waTextURL(b),'_blank');
+  }catch(e){
+    // offline or blocked: fall back to text message
+    window.open(waTextURL(b),'_blank');
+  }finally{
+    if(btn){ btn.innerHTML=old; btn.disabled=false; }
+  }
 }
 
 /* ---------- backup ---------- */
